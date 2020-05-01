@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author vicent
  */
-@WebServlet(name = "ServletEJB", urlPatterns = {"/ServletEJB"})
+@WebServlet(urlPatterns = {"/ServletEmpleados"})
 public class ServletEmpleados extends HttpServlet {
     
     @EJB
@@ -40,7 +40,7 @@ public class ServletEmpleados extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletEJB</title>");            
+            out.println("<title>Servlet ServletEmpleados</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Listado de empleados</h1>");

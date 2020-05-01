@@ -1,8 +1,12 @@
 
 package Servlets;
 
+import beans.incidenciasEJB;
+import entities.Empleado;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author vicent
  */
 @WebServlet(name = "ServletEJB", urlPatterns = {"/ServletEJB"})
-public class ServletEJB extends HttpServlet {
+public class ServletEmpleados extends HttpServlet {
+    
+    @EJB
+    incidenciasEJB incEJB;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,14 +36,24 @@ public class ServletEJB extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            List<Empleado> e = incEJB.findAllEmpleados();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet ServletEJB</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletEJB at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Listado de empleados</h1>");
+                for(int i=0; i<10;i++){
+                out.print("<b>Usuario: </b>" + 
+                        e.get(i).getNombreusuario() + 
+                        ", <b>contraseña: </b>" + 
+                        e.get(i).getPassword() + 
+                        ", <b>nombre: </b>" + 
+                        e.get(i).getNombrecompleto() + 
+                        ", <b>telefono: </b>" + 
+                        e.get(i).getTelefono() + "<br>");
+            }
             out.println("</body>");
             out.println("</html>");
         }

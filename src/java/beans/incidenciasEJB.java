@@ -6,14 +6,16 @@
 package beans;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
 /**
  *
- * @author vicen
+ * @author vicent
  */
 @Stateless
 public class incidenciasEJB {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceUnit
+    EntityManagerFactory emf;
 }

@@ -17,6 +17,6 @@ public class incidenciasEJB {
     EntityManagerFactory emf;
     
     public List findAllEmpleados() {
-    return emf.createEntityManager().createNamedQuery("Empleado.findAll").getResultList();
+        return emf.createEntityManager().createNamedQuery("Empleado.findAll").getResultList();
     }
 }

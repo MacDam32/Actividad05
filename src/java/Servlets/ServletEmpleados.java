@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlets;
 
 import beans.incidenciasEJB;
@@ -17,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author vicent
  */
-@WebServlet(urlPatterns = {"/ServletEmpleados"})
+@WebServlet(name = "ServletEmpleados", urlPatterns = {"/ServletEmpleados"})
 public class ServletEmpleados extends HttpServlet {
     
     @EJB
@@ -43,16 +47,16 @@ public class ServletEmpleados extends HttpServlet {
             out.println("<title>Servlet ServletEmpleados</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Listado de empleados</h1>");
-                for(int i=0; i<10;i++){
+            out.println("<h1>listado de empleados: </h1>");
+            for (int i = 0; i < e.size(); i++){
                 out.print("<b>Usuario: </b>" + 
-                        e.get(i).getNombreusuario() + 
-                        ", <b>contraseña: </b>" + 
-                        e.get(i).getPassword() + 
-                        ", <b>nombre: </b>" + 
-                        e.get(i).getNombrecompleto() + 
-                        ", <b>telefono: </b>" + 
-                        e.get(i).getTelefono() + "<br>");
+                e.get(i).getNombreusuario() + 
+                ", <b>contrasena: </b>" + 
+                e.get(i).getPassword() + "<br>"+
+                ", <b>nombre: </b>" + 
+                e.get(i).getNombrecompleto() + 
+                ", <b>telefono: </b>" + 
+                e.get(i).getTelefono() + "<br>");
             }
             out.println("</body>");
             out.println("</html>");

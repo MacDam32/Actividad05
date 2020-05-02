@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 01-may-2020, 16:13:51
-    Author     : vicen
+    Author     : vicent
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Gestion de empleados e incidencias</h1>
+        <h2>-------------------------------------------------------------</h2>
+        <form action="ServletEmpleados" method="POST"><b>Visualizar un listado de todos los empleados.</b>
+            <input type="submit" name="verempleados" value="ver" />           
+        </form>
+        </br>
+        <form action="ServletNuevoEmpl" method="POST"><b>insertar un nuevo empleado.</b>
+            <input type="submit" name="insertarempleado" value="insertar" />           
+        </form>
+        </br>
+        <form action="ServletLogin" method="POST"><b>Log in.</b>
+            <p>usuario: <input type="text" name="numSocio"></p>
+            <p>contrasena: <input type="text" name="nombre"></p>
+            <input type="submit" name="Login" value="Entrar" />           
+        </form>
+        </br>
     </body>
 </html>

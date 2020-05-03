@@ -22,21 +22,27 @@ public class incidenciasEJB {
         return emf.createEntityManager().createNamedQuery("Empleado.findAll").getResultList();
     }
     
-    /*public boolean existeSocio(Empleado e) {
+    public boolean existeEmpleado(Empleado e) {
     EntityManager em = emf.createEntityManager();
-    Empleado encontrado = em.find(Empleado.class, e.getNombreusuario());
-    if (encontrado.getPassword().equals(e.getPassword())){        
-        em.close();
-        return true;      
-    }else {
-        em.close(); 
-        return false;    
-        } 
-    }*/
+    Empleado encontrado = em.find(Empleado.class, e.getNombreusuario());       
+    em.close();  
+    return encontrado != null; 
+    }
     
     public Empleado Emplxusu (Empleado e){
     EntityManager em = emf.createEntityManager();
     Empleado encontrado = em.find(Empleado.class, e.getNombreusuario());
     return encontrado;
+    }
+
+    public boolean insertarEmpleado(Empleado e) {
+        if (!existeEmpleado(e)) {
+            EntityManager em = emf.createEntityManager();
+            em.persist(e);
+            //        em.flush();   Para forzar que se haga ahora
+            em.close();
+            return true;
+        }
+        return false;      
     }
 }

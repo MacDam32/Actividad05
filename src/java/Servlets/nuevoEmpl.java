@@ -5,8 +5,11 @@
  */
 package Servlets;
 
+import beans.incidenciasEJB;
+import entities.Empleado;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "nuevoEmpl", urlPatterns = {"/nuevoEmpl"})
 public class nuevoEmpl extends HttpServlet {
+    
+    @EJB
+    incidenciasEJB incEJB;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +46,20 @@ public class nuevoEmpl extends HttpServlet {
             out.println("<title>Servlet nuevoEmpl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet nuevoEmpl at " + request.getContextPath() + "</h1>");
+            
+            String usuario = request.getParameter("usuario");
+            String password = request.getParameter("password");
+            String nombre = request.getParameter("nombre");
+            String telefono = request.getParameter("telefono");
+            
+            Empleado e = new Empleado(usuario, password, nombre, telefono);
+            
+            if (incEJB.insertarEmpleado(e)) {
+                out.println("Empleado dado de alta.");
+            } else {
+                out.println("Ya existe un empleado con ese nombre.");
+            }
+            
             out.println("</body>");
             out.println("</html>");
         }

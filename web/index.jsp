@@ -18,7 +18,7 @@
             <input type="submit" name="verempleados" value="ver" />           
         </form>
         </br>
-        <form action="ServletNuevoEmpl" method="POST"><b>insertar un nuevo empleado.</b>
+        <form action="nuevoEmpl.html" method="POST"><b>insertar un nuevo empleado.</b>
             <input type="submit" name="insertarempleado" value="insertar" />           
         </form>
         </br>

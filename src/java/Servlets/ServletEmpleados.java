@@ -58,6 +58,11 @@ public class ServletEmpleados extends HttpServlet {
                 ", <b>telefono: </b>" + 
                 e.get(i).getTelefono() + "<br>");
             }
+            out.println("</br>");
+            out.println("<form action=\"index.jsp\" method=\"POST\">"
+            + "Volver a la pagina inicial"
+            + "<input type=\"submit\" name=\"volver\" value=\"Volver\" />"
+            + "</form>");
             out.println("</body>");
             out.println("</html>");
         }

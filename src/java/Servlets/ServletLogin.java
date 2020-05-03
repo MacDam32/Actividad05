@@ -51,10 +51,10 @@ public class ServletLogin extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String psswd = request.getParameter("password");
             Empleado e = new Empleado(usuario, psswd,"","");
-            if (incEJB.existeSocio(e)) {
-                out.println("<h2>Bienvenido " + e.getNombrecompleto() + "! </h2>");
+            if (incEJB.Emplxusu(e).getPassword().equals(e.getPassword())) {
+                out.println("<h2>Bienvenido " + incEJB.Emplxusu(e).getNombrecompleto() + "! </h2>");
             } else {
-                out.println("usuario o contraseña incorrectos.");
+                out.println("<h2>usuario o contraseña incorrectos.</h2>");
             }           
             
             out.println("</body>");

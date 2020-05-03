@@ -22,10 +22,21 @@ public class incidenciasEJB {
         return emf.createEntityManager().createNamedQuery("Empleado.findAll").getResultList();
     }
     
-    public boolean existeSocio(Empleado e) {
+    /*public boolean existeSocio(Empleado e) {
     EntityManager em = emf.createEntityManager();
-    em.contains(e);
-    em.close();
-    return e != null;
+    Empleado encontrado = em.find(Empleado.class, e.getNombreusuario());
+    if (encontrado.getPassword().equals(e.getPassword())){        
+        em.close();
+        return true;      
+    }else {
+        em.close(); 
+        return false;    
+        } 
+    }*/
+    
+    public Empleado Emplxusu (Empleado e){
+    EntityManager em = emf.createEntityManager();
+    Empleado encontrado = em.find(Empleado.class, e.getNombreusuario());
+    return encontrado;
     }
 }

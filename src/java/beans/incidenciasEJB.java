@@ -1,8 +1,10 @@
 
 package beans;
 
+import entities.Empleado;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
@@ -18,5 +20,12 @@ public class incidenciasEJB {
     
     public List findAllEmpleados() {
         return emf.createEntityManager().createNamedQuery("Empleado.findAll").getResultList();
+    }
+    
+    public boolean existeSocio(Empleado e) {
+    EntityManager em = emf.createEntityManager();
+    em.contains(e);
+    em.close();
+    return e != null;
     }
 }

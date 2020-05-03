@@ -23,8 +23,8 @@
         </form>
         </br>
         <form action="ServletLogin" method="POST"><b>Log in.</b>
-            <p>usuario: <input type="text" name="numSocio"></p>
-            <p>contrasena: <input type="text" name="nombre"></p>
+            <p>usuario: <input type="text" name="usuario"></p>
+            <p>contrasena: <input type="text" name="password"></p>
             <input type="submit" name="Login" value="Entrar" />           
         </form>
         </br>

@@ -53,6 +53,9 @@ public class ServletLogin extends HttpServlet {
             Empleado e = new Empleado(usuario, psswd,"","");
             if (incEJB.Emplxusu(e).getPassword().equals(e.getPassword())) {
                 out.println("<h2>Bienvenido " + incEJB.Emplxusu(e).getNombrecompleto() + "! </h2>");
+                out.println("<form action='Logged.html' method='POST'><b>Entra al menu:</b> "
+                        + "<input type='submit' name='Entrar' value='Entrar' />"
+                        + "</form>");
             } else {
                 out.println("<h2>usuario o contraseña incorrectos.</h2>");
             }           

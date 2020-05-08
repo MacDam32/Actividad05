@@ -6,6 +6,7 @@
 package Servlets;
 
 import beans.incidenciasEJB;
+import entities.Empleado;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -45,7 +46,18 @@ public class EliminarEmpl extends HttpServlet {
             out.println("<title>Servlet EliminarEmpl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EliminarEmpl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Eliminar Empleado</h1>");
+            String usuario = request.getParameter("usuario");
+            Empleado e = new Empleado(usuario);
+            if (incEJB.elempl(e)) {
+                out.println("empleado eliminado.");
+            } else {
+                out.println("No existe un empleado con ese usuario.");
+            }
+            out.println("<form action=\"Logged.html\" method=\"POST\">"
+                    + "Volver al menú"
+                    + "<input type=\"submit\" name=\"volver\" value=\"Volver\" />"
+                    + "</form>");
             out.println("</body>");
             out.println("</html>");
         }

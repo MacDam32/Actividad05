@@ -70,4 +70,15 @@ public class incidenciasEJB {
         }
         return false;
     }
+
+    public boolean elempl(Empleado e) {
+        EntityManager em = emf.createEntityManager();
+        Empleado mod = em.find(Empleado.class, e.getNombreusuario());
+        if (mod != null) {
+            em.remove(mod);
+            em.close();
+            return true;
+        }
+        return false;
+    }
 }

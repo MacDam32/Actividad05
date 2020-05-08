@@ -3,6 +3,7 @@ package beans;
 
 import entities.Empleado;
 import entities.Incidencia;
+import static java.lang.System.out;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,6 +22,10 @@ public class incidenciasEJB {
     
     public List findAllEmpleados() {
         return emf.createEntityManager().createNamedQuery("Empleado.findAll").getResultList();
+    }
+    
+    public List findAllIncidencias() {
+    return emf.createEntityManager().createNamedQuery("Incidencia.findAll").getResultList();
     }
     
     public boolean existeEmpleado(Empleado e) {
@@ -90,13 +95,26 @@ public class incidenciasEJB {
             em.close();
             return true;
         }return false;
+        
     }
 
 //    public Incidencia obtenerinc(Incidencia i) {
 //        EntityManager em = emf.createEntityManager();
-//        Incidencia inc = em.find(Incidencia.class, i.getIdincidencia());
-//        if(existeinc(inc)){
-//            return inc;
-//        }return
+//        //Incidencia inc = em.find(Incidencia.class, i.getIdincidencia());
+//            int id = Integer.parseInt(identificador);
+//            Incidencia inc = new Incidencia();
+//            for(int k=0; k<incidencias.size(); k++){
+//                if(id==incidencias.get(k).getIdincidencia()){
+//                    i.setIdincidencia(incidencias.get(k).getIdincidencia());
+//                    i.setFechahora(incidencias.get(k).getFechahora());
+//                    i.setDetalle(incidencias.get(k).getDetalle());
+//                    i.setTipo(incidencias.get(k).getTipo());
+//                    i.setOrigen(incidencias.get(k).getOrigen());
+//                    i.setDestino(incidencias.get(k).getDestino());
+//                    out.println(i.toString());
+//                }else {
+//                out.println("No existe ninguna incidencia con ese id.");
+//                }
+//            }  
 //    }
 }

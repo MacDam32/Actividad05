@@ -48,11 +48,12 @@ public class obtenerinc extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Obtener incidencia.</h1>");
-            List<Incidencia> incidencias = incEJB.findAllEmpleados();
+            List<Incidencia> incidencias = incEJB.findAllIncidencias();
             String identificador = request.getParameter("id");
             int id = Integer.parseInt(identificador);
-            Incidencia i = new Incidencia();
-            for(int k=0; k<incidencias.size(); k++){
+            Incidencia i = new Incidencia(id);
+            if(incEJB.existeinc(i)){
+                for(int k=0; k<incidencias.size(); k++){
                 if(id==incidencias.get(k).getIdincidencia()){
                     i.setIdincidencia(incidencias.get(k).getIdincidencia());
                     i.setFechahora(incidencias.get(k).getFechahora());
@@ -61,16 +62,19 @@ public class obtenerinc extends HttpServlet {
                     i.setOrigen(incidencias.get(k).getOrigen());
                     i.setDestino(incidencias.get(k).getDestino());
                     out.println(i.toString());
-                }else {
+                }
+            }
+            }else{
                 out.println("No existe ninguna incidencia con ese id.");
-            }                           
-            out.println("<form action=\"index.jsp\" method=\"POST\">"
-                    + "Volver a la pagina inicial"
+            }
+            
+            out.println("<form action=\"Logged.html\" method=\"POST\">"
+                    + "Volver al menú"
                     + "<input type=\"submit\" name=\"volver\" value=\"Volver\" />"
                     + "</form>");
             out.println("</body>");
             out.println("</html>");
-            }
+            
         }
     }    
 
@@ -86,7 +90,6 @@ public class obtenerinc extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**

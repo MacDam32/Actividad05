@@ -147,7 +147,7 @@ public class Incidencia implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Incidencia[ idincidencia=" + idincidencia + ", fecha y hora= "+ fechahora + ", detalle = " + detalle + ", tipo = " + tipo + ", origen = " + origen.getNombreusuario() + ", destino = " + destino.getNombreusuario() +" ]";
+        return "Incidencia[ idincidencia=" + idincidencia + ", fecha y hora= "+ fechahora + ", detalle = " + detalle + ", tipo = " + tipo + ", origen = " + origen.getNombreusuario() + ", destino = " + destino.getNombreusuario() +" ]";
     }
     
 }

@@ -6,6 +6,7 @@
 package Servlets;
 
 import beans.incidenciasEJB;
+import entities.Empleado;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -45,7 +46,20 @@ public class ModificarPsswd extends HttpServlet {
             out.println("<title>Servlet ModificarPsswd</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModificarPsswd at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Modificar contrasena</h1>");
+            String usuario = request.getParameter("usuario");
+            String psswd = request.getParameter("psswd");
+            Empleado e = new Empleado(usuario, psswd);
+            if (incEJB.modpsswd(e)) {
+                out.println("contrasena modificada.");
+            } else {
+                out.println("No existe un empleado con ese usuario.");
+            }
+            out.println("<form action=\"Logged.html\" method=\"POST\">"
+                    + "Volver al menú"
+                    + "<input type=\"submit\" name=\"volver\" value=\"Volver\" />"
+                    + "</form>");            
+            
             out.println("</body>");
             out.println("</html>");
         }

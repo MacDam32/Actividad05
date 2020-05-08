@@ -58,4 +58,16 @@ public class incidenciasEJB {
         }
         return false;
     }
+    
+        public boolean modpsswd(Empleado e) {
+        EntityManager em = emf.createEntityManager();
+        Empleado mod = em.find(Empleado.class, e.getNombreusuario());
+        if (mod != null) {
+            mod.setPassword(e.getPassword());
+            em.persist(mod);
+            em.close();
+            return true;
+        }
+        return false;
+    }
 }

@@ -77,6 +77,11 @@ public class Empleado implements Serializable {
         this.nombrecompleto = nombrecompleto;
         this.telefono = telefono;
     }
+    
+    public Empleado(String nombreusuario, String password){
+        this.nombreusuario = nombreusuario;
+        this.password = password;
+    }
 
     public Empleado(String nombreusuario, String password, String nombrecompleto, String telefono) {
         this.nombreusuario = nombreusuario;

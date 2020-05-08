@@ -2,6 +2,7 @@
 package beans;
 
 import entities.Empleado;
+import entities.Incidencia;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -81,4 +82,21 @@ public class incidenciasEJB {
         }
         return false;
     }
+
+    public boolean existeinc(Incidencia i) {
+        EntityManager em = emf.createEntityManager();
+        Incidencia inc = em.find(Incidencia.class, i.getIdincidencia()); 
+        if (inc != null) {
+            em.close();
+            return true;
+        }return false;
+    }
+
+//    public Incidencia obtenerinc(Incidencia i) {
+//        EntityManager em = emf.createEntityManager();
+//        Incidencia inc = em.find(Incidencia.class, i.getIdincidencia());
+//        if(existeinc(inc)){
+//            return inc;
+//        }return
+//    }
 }

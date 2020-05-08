@@ -6,6 +6,7 @@
 package Servlets;
 
 import beans.incidenciasEJB;
+import entities.Empleado;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -45,7 +46,22 @@ public class ModificarEmpl extends HttpServlet {
             out.println("<title>Servlet ModificarEmpl</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModificarEmpl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Modificacion de empleado:</h1>");
+            
+            String usuario = request.getParameter("usuario");
+            String nombre = request.getParameter("nombre");
+            String tlf = request.getParameter("tlf");
+            Empleado e = new Empleado(usuario, nombre, tlf);
+            if (incEJB.modempl(e)) {
+                out.println("Empleado modificado.");
+            } else {
+                out.println("No existe un empleado con ese usuario.");
+            }
+            out.println("<form action=\"Logged.html\" method=\"POST\">"
+                    + "Volver al menú"
+                    + "<input type=\"submit\" name=\"volver\" value=\"Volver\" />"
+                    + "</form>");
+            
             out.println("</body>");
             out.println("</html>");
         }

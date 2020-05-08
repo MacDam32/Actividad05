@@ -45,4 +45,17 @@ public class incidenciasEJB {
         }
         return false;      
     }
+
+    public boolean modempl(Empleado e) {
+        EntityManager em = emf.createEntityManager();
+        Empleado mod = em.find(Empleado.class, e.getNombreusuario());
+        if (mod != null) {
+            mod.setNombrecompleto(e.getNombrecompleto());
+            mod.setTelefono(e.getTelefono());
+            em.persist(mod);
+            em.close();
+            return true;
+        }
+        return false;
+    }
 }

@@ -97,24 +97,20 @@ public class incidenciasEJB {
         }return false;
         
     }
+    
+    public int numincidencia() {
+        int k = 0;
+        List <Incidencia> inc = findAllIncidencias();
+        for(int i = 0; i<inc.size(); i++){
+        k++;
+        }
+        return k;
+    }
 
-//    public Incidencia obtenerinc(Incidencia i) {
-//        EntityManager em = emf.createEntityManager();
-//        //Incidencia inc = em.find(Incidencia.class, i.getIdincidencia());
-//            int id = Integer.parseInt(identificador);
-//            Incidencia inc = new Incidencia();
-//            for(int k=0; k<incidencias.size(); k++){
-//                if(id==incidencias.get(k).getIdincidencia()){
-//                    i.setIdincidencia(incidencias.get(k).getIdincidencia());
-//                    i.setFechahora(incidencias.get(k).getFechahora());
-//                    i.setDetalle(incidencias.get(k).getDetalle());
-//                    i.setTipo(incidencias.get(k).getTipo());
-//                    i.setOrigen(incidencias.get(k).getOrigen());
-//                    i.setDestino(incidencias.get(k).getDestino());
-//                    out.println(i.toString());
-//                }else {
-//                out.println("No existe ninguna incidencia con ese id.");
-//                }
-//            }  
-//    }
+    public boolean insertarincidencia(Incidencia I) {
+        EntityManager em = emf.createEntityManager();
+        em.persist(I);
+        em.close();
+        return true;
+    }
 }

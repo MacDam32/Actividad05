@@ -70,11 +70,13 @@ public class Incidencia implements Serializable {
         this.idincidencia = idincidencia;
     }
 
-    public Incidencia(Integer idincidencia, String fechahora, String detalle, String tipo) {
+    public Incidencia(Integer idincidencia, String fechahora, String detalle, String tipo, Empleado origen, Empleado destino) {
         this.idincidencia = idincidencia;
         this.fechahora = fechahora;
         this.detalle = detalle;
         this.tipo = tipo;
+        this.origen = origen;
+        this.destino = destino;
     }
 
     public Integer getIdincidencia() {

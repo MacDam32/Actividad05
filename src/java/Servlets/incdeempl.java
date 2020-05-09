@@ -22,12 +22,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author vicen
  */
-@WebServlet(name = "incxaempl", urlPatterns = {"/incxaempl"})
-public class incxaempl extends HttpServlet {
-    
+@WebServlet(name = "incdeempl", urlPatterns = {"/incdeempl"})
+public class incdeempl extends HttpServlet {
+
     @EJB
     incidenciasEJB incEJB;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,7 +44,7 @@ public class incxaempl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>incidencias para un empleado.</title>");            
+            out.println("<title>incidencias de un empleado.</title>");            
             out.println("</head>");
             out.println("<body>");
             List<Incidencia> incidencias = incEJB.findAllIncidencias();
@@ -54,7 +53,7 @@ public class incxaempl extends HttpServlet {
             Incidencia i = new Incidencia();
             if(incEJB.existeEmpleado(e)){
             for(int k=0; k<incidencias.size(); k++){
-                if(usuario.equals(incidencias.get(k).getDestino().getNombreusuario())){
+                if(usuario.equals(incidencias.get(k).getOrigen().getNombreusuario())){
                     i.setIdincidencia(incidencias.get(k).getIdincidencia());
                     i.setFechahora(incidencias.get(k).getFechahora());
                     i.setDetalle(incidencias.get(k).getDetalle());
@@ -65,13 +64,12 @@ public class incxaempl extends HttpServlet {
                 }           
             }
             }else{
-                out.println("No existe ninguna incidencia para ese usuario.");
+                out.println("No existe ninguna incidencia de ese usuario.");
                 }
             out.println("<form action=\"Logged.html\" method=\"POST\">"
                     + "Volver al menú"
                     + "<input type=\"submit\" name=\"volver\" value=\"Volver\" />"
-                    + "</form>");    
-            
+                    + "</form>");             
             out.println("</body>");
             out.println("</html>");
         }

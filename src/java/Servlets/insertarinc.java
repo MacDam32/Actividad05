@@ -62,6 +62,10 @@ public class insertarinc extends HttpServlet {
             if (incEJB.insertarincidencia(I)){
                 out.println("incidencia insertada.");
             }else out.println("error insertando la incidencia");
+            out.println("<form action=\"Logged.html\" method=\"POST\">"
+                    + "Volver al menú"
+                    + "<input type=\"submit\" name=\"volver\" value=\"Volver\" />"
+                    + "</form>");
             out.println("</body>");
             out.println("</html>");
         }

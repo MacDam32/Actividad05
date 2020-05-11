@@ -24,16 +24,16 @@ public class HistorialEJB {
     EntityManagerFactory emf;
     
     public List findAllHistorials() {
-    return emf.createEntityManager().createNamedQuery("Historial.findAll").getResultList();
+        return emf.createEntityManager().createNamedQuery("Historial.findAll").getResultList();
     }
     
     public int numhistorial() {
-    int k = 0;
-    List <Incidencia> inc = findAllHistorials();
-    for(int i = 0; i<inc.size(); i++){
-    k++;
-    }
-    return k;
+        int k = 0;
+        List <Incidencia> inc = findAllHistorials();
+        for(int i = 0; i<inc.size(); i++){
+        k++;
+        }
+        return k;
     }
 
     public void guardarHistorial(Historial H) {

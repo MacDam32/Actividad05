@@ -23,13 +23,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author vicen
+ * @author vicent
  */
 @WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
 public class ServletLogin extends HttpServlet {
     
     @EJB
     incidenciasEJB incEJB;
+    @EJB
     HistorialEJB histEJB;
 
     /**
@@ -57,21 +58,24 @@ public class ServletLogin extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String psswd = request.getParameter("password");
             Empleado e = new Empleado(usuario, psswd,"","");
+            
+            
             if (incEJB.Emplxusu(e).getPassword().equals(e.getPassword())) {
                 out.println("<h2>Bienvenido " + incEJB.Emplxusu(e).getNombrecompleto() + "! </h2>");
-                out.println("<form action='Logged.html' method='POST'><b>Entra al menu:</b> "
-                        + "<input type='submit' name='Entrar' value='Entrar' />"
-                        + "</form>");
+
                 int id = histEJB.numhistorial();
                 String tipo = "I";
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String FH = sdf.format(new Date());
                 Historial H = new Historial(id, tipo, FH, e);
-                histEJB.guardarHistorial(H);
+                histEJB.guardarHistorial(H);   
+                
             } else {
                 out.println("<h2>usuario o contraseña incorrectos.</h2>");
             }           
-            
+            out.println("<form action='Logged.html' method='POST'><b>Entra al menu:</b> "
+                        + "<input type='submit' name='Entrar' value='Entrar' />"
+                        + "</form>");
             out.println("</body>");
             out.println("</html>");
         }

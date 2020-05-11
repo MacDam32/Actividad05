@@ -5,10 +5,14 @@
  */
 package Servlets;
 
+import beans.HistorialEJB;
 import beans.incidenciasEJB;
 import entities.Empleado;
+import entities.Historial;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,6 +30,7 @@ public class ServletLogin extends HttpServlet {
     
     @EJB
     incidenciasEJB incEJB;
+    HistorialEJB histEJB;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,6 +62,12 @@ public class ServletLogin extends HttpServlet {
                 out.println("<form action='Logged.html' method='POST'><b>Entra al menu:</b> "
                         + "<input type='submit' name='Entrar' value='Entrar' />"
                         + "</form>");
+                int id = histEJB.numhistorial();
+                String tipo = "I";
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                String FH = sdf.format(new Date());
+                Historial H = new Historial(id, tipo, FH, e);
+                histEJB.guardarHistorial(H);
             } else {
                 out.println("<h2>usuario o contraseña incorrectos.</h2>");
             }           

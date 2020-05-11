@@ -5,6 +5,7 @@
  */
 package beans;
 
+import entities.Empleado;
 import entities.Historial;
 import entities.Incidencia;
 import java.util.List;
@@ -42,6 +43,10 @@ public class HistorialEJB {
         em.close();
     }
     
-    
+    public List<Historial> historialxempleado (Empleado e) {
+        EntityManager em = emf.createEntityManager();
+        List <Historial> listado = emf.createEntityManager().createQuery("SELECT h FROM Historial h WHERE h.empleado = "+ e).getResultList();
+        return listado;
+    }
 
 }

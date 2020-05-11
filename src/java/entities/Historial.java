@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Historial.findAll", query = "SELECT h FROM Historial h")
     , @NamedQuery(name = "Historial.findByIdevento", query = "SELECT h FROM Historial h WHERE h.idevento = :idevento")
     , @NamedQuery(name = "Historial.findByTipo", query = "SELECT h FROM Historial h WHERE h.tipo = :tipo")
+    , @NamedQuery(name = "Historial.findByEmpleado", query = "SELECT h FROM Historial h WHERE h.empleado = :empleado")
     , @NamedQuery(name = "Historial.findByFechahora", query = "SELECT h FROM Historial h WHERE h.fechahora = :fechahora")})
 public class Historial implements Serializable {
 
@@ -66,6 +67,10 @@ public class Historial implements Serializable {
         this.idevento = idevento;
         this.tipo = tipo;
         this.fechahora = fechahora;
+        this.empleado = empleado;
+    }
+    
+    public Historial(Empleado empleado){
         this.empleado = empleado;
     }
 
